@@ -4,7 +4,7 @@ module.exports = {
         name: "upload",
         script: "./dist/index.js",
         env: {
-          PORT: 4000,
+          PORT: 5000,
           NODE_ENV: "production",
         },
       }
