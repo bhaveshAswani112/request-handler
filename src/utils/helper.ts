@@ -1,5 +1,5 @@
 import * as AWS from "aws-sdk"
-import { ACCESS_KEY_ID,SECRET_ACCESS_KEY,S3_URL,dirname } from "../constant.js";
+import { ACCESS_KEY_ID,SECRET_ACCESS_KEY,S3_URL,dirname } from "../../../upload/src/constant.js";
 import * as path from "path"
 import fs from "fs"
 

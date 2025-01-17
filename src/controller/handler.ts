@@ -17,7 +17,7 @@ export const requestHandler = async (req : Request, res : Response) : Promise<an
         try {
             const host = req.hostname
             const id = host.split(".")[0]
-            let filePath = req.path
+            let filePath = req.path ? req.path : "index.html"
             console.log(filePath)
             filePath = filePath.startsWith("/") ? filePath.substring(1) : filePath
             const contents = await s3Client.getObject({
