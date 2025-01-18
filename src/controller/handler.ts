@@ -19,10 +19,16 @@ export const requestHandler = async (req : Request, res : Response) : Promise<an
             let filePath = req.path==="/" ? "index.html" : req.path 
             console.log(filePath)
             filePath = filePath.startsWith("/") ? filePath.substring(1) : filePath
-            const contents = await s3Client.getObject({
+            let contents = await s3Client.getObject({
                 Bucket : "react-bucket",
                 Key : `output/${id}/dist/${filePath}`
             }).promise()
+            if(!contents) {
+                contents = await s3Client.getObject({
+                    Bucket : "react-bucket",
+                    Key : `output/${id}/build/${filePath}`
+                }).promise()
+            }
             console.log(contents)
             res.set("Content-Type", contents.ContentType);
             res.send(contents.Body)
