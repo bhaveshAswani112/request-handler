@@ -23,13 +23,14 @@ export const requestHandler = async (req : Request, res : Response) : Promise<an
                 Bucket : "react-bucket",
                 Key : `output/${id}/dist/${filePath}`
             }).promise()
+            if(filePath.endsWith("svg"))console.log(contents)
             const type = filePath.endsWith("html") ? "text/html" :
              filePath.endsWith("css") ? "text/css" :
              filePath.endsWith("js") ? "application/javascript" :
              filePath.endsWith("svg") ? "image/svg+xml" :
              filePath.endsWith("jpg") || filePath.endsWith("jpeg") ? "image/jpeg" :
              filePath.endsWith("png") ? "image/png" :
-             "application/octet-stream"; // Default for unknown types
+             "application/octet-stream";
             res.set("Content-Type", type);
             res.send(contents.Body)
         } catch (error) {
